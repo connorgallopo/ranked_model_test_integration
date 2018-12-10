@@ -1,0 +1,19 @@
+<%= form_with(model: backlog_item, local: true) do |form| %>
+  <% if backlog_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(backlog_item.errors.count, "error") %> prohibited this backlog_item from being saved:</h2>
+
+      <ul>
+      <% backlog_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.text_field :title %>
+    <%= form.collection_select :sprint_id, Sprint.all, :id, :title %>
+    <%= form.submit %>
+  </div>
+<% end %>
